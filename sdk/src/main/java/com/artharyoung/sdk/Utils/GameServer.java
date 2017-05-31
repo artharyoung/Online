@@ -1,4 +1,4 @@
-package com.artharyoung.sdk;
+package com.artharyoung.sdk.Utils;
 
 import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;

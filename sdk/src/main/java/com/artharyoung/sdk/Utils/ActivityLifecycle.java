@@ -1,4 +1,4 @@
-package com.artharyoung.sdk;
+package com.artharyoung.sdk.Utils;
 
 import android.app.Activity;
 

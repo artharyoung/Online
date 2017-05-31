@@ -1,9 +1,14 @@
 package com.artharyoung.sdk;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Context;
 
+import com.artharyoung.sdk.Login.LoginManager;
 import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;
+import com.artharyoung.sdk.Utils.ActivityLifecycle;
+import com.artharyoung.sdk.Utils.GameServer;
 
 import org.json.JSONObject;
 
@@ -11,10 +16,11 @@ import org.json.JSONObject;
  * Created by arthar on 2017/5/25.
  */
 
-public class SDKManager implements ActivityLifecycle, GameServer{
+public class SDKManager implements ActivityLifecycle, GameServer {
 
     private static final String TAG = "======SDKManager";
-    private OnLoginListener mOnLoginListener;
+    private Context mContext = null;
+    private FragmentManager mManager = null;
 
     /**
      * 设置成单例模式
@@ -30,6 +36,8 @@ public class SDKManager implements ActivityLifecycle, GameServer{
     @Override
     public void onActivityCreated(Activity activity) {
 
+        mContext = activity;
+        mManager = activity.getFragmentManager();
     }
 
     @Override
@@ -63,8 +71,8 @@ public class SDKManager implements ActivityLifecycle, GameServer{
      */
     @Override
     public void login(OnLoginListener onLoginListener) {
-        this.mOnLoginListener = onLoginListener;
-        mOnLoginListener.onSuccess(new JSONObject());
+
+        LoginManager.getInstance().start(mContext,mManager,onLoginListener);
     }
 
     /**

@@ -8,18 +8,6 @@ import android.content.Context;
 
 public class ResFinder {
 
-    /**
-     * 利用java虚拟机的特性来实现单例模式
-     */
-    private static class SingleResFinder{
-        static final  ResFinder instance = new ResFinder();
-    }
-
-    public static ResFinder getInstance(){
-        return SingleResFinder.instance;
-    }
-
-
     public static int getId(Context context, String defType, String name){
 
         int id=0;
