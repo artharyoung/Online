@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLogin(View view){
         Log.d(TAG, "onLogin: 启动！");
-        SDKManager.getInstance().login(new OnLoginListener() {
+        SDKManager.getInstance().login(this,new OnLoginListener() {
 
             @Override
             public void onSuccess(JSONObject json) {

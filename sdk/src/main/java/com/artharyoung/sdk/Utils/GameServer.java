@@ -1,5 +1,7 @@
 package com.artharyoung.sdk.Utils;
 
+import android.app.Activity;
+
 import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;
 
@@ -10,7 +12,7 @@ import org.json.JSONObject;
  */
 
 public interface GameServer {
-    void login(OnLoginListener onLoginListener);
+    void login(Activity activity, OnLoginListener onLoginListener);
     void pay(String payInfo,OnPayListener onPayListener);
     void upLoadInfo(JSONObject json);
     void exitApp();
