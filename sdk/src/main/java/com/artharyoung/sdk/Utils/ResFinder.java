@@ -1,6 +1,7 @@
 package com.artharyoung.sdk.Utils;
 
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by arthar on 2017/5/15.
@@ -8,6 +9,7 @@ import android.content.Context;
 
 public class ResFinder {
 
+    private static final String TAG = "ResFinder";
     public static int getId(Context context, String defType, String name){
 
         int id=0;
@@ -17,8 +19,7 @@ public class ResFinder {
             id = context.getResources().getIdentifier(name, defType, context.getPackageName());
 
         } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+            Log.d(TAG, "========getId======: " + "type:" + defType +"|name:" + name);
         }
 
         return id;

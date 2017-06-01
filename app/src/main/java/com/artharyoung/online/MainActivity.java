@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SDKManager.getInstance().onActivityCreated(this);
+
     }
 
     @Override

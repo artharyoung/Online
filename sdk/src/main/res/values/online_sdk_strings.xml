@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SDK</string>
+    <!--login view-->
+    <string name="online_sdk_account">Account</string>
+    <string name="online_sdk_password">Password</string>
+    <string name="online_sdk_sign_in">Sign in</string>
+    <string name="online_sdk_new_account">Create an Account</string>
+    <string name="online_sdk_next">Next</string>
+    <string name="online_sdk_forgotten">Forgotten your password?</string>
+</resources>

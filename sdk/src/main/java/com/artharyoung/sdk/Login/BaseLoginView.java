@@ -28,7 +28,6 @@ public class BaseLoginView extends DialogFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Dialog dialog = getDialog();
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCanceledOnTouchOutside(false);
 
         Window window = dialog.getWindow();

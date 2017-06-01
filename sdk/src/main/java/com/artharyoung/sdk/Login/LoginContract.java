@@ -10,6 +10,7 @@ import com.artharyoung.sdk.Utils.BaseView;
 public class LoginContract {
 
     interface Presenter extends BasePresenter {
+
         void signIn();
 
         void createAnAccount();

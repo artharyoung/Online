@@ -1,11 +1,12 @@
 package com.artharyoung.sdk.Login;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.artharyoung.sdk.Utils.ResFinder;
 
@@ -14,24 +15,35 @@ import com.artharyoung.sdk.Utils.ResFinder;
  */
 
 public class LoginView extends BaseLoginView implements LoginContract.View{
+
     private static final String TAG = "LoginView";
 
-    @Override
-    public void show(FragmentManager manager, String tag) {
-        super.show(manager, tag);
-    }
+    private LoginContract.Presenter mPresenter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parent = inflater.inflate(ResFinder.getId(getActivity(),"layout","online_login_main"),null);
+        /**
+         * 只能这么写才能使用support包的特性，即输入框变为下划线
+         */
+        View parentView = getActivity().getLayoutInflater().inflate(ResFinder.getId(getActivity(),"layout","online_login_main"),container);
+        TextView forgottenPassword = (TextView) parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_password_forgotten"));
+        TextView createAccount = (TextView) parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_account_create"));
+        forgottenPassword.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG|Paint.UNDERLINE_TEXT_FLAG);//设置下划线并抗锯齿（防止锯齿）
+        createAccount.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG|Paint.UNDERLINE_TEXT_FLAG);
 
-        return parent;
+        return parentView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        mPresenter.start();
     }
 
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
-
+        this.mPresenter = presenter;
     }
 
     @Override
