@@ -31,8 +31,10 @@ public class BaseLoginView extends DialogFragment {
         dialog.setCanceledOnTouchOutside(false);
 
         Window window = dialog.getWindow();
-        window.getAttributes().windowAnimations = ResFinder.getId(getActivity(),"style","online_sdk_login_anim");
-        window.setGravity(Gravity.CENTER);
+        if(window != null) {
+            window.setWindowAnimations(ResFinder.getId(getActivity(), "style", "online_sdk_login_anim"));
+            window.setGravity(Gravity.CENTER);
+        }
     }
 
     @Nullable

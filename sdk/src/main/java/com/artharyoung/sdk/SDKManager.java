@@ -66,7 +66,7 @@ public class SDKManager implements ActivityLifecycle, GameServer {
     @Override
     public void login(Activity activity, OnLoginListener onLoginListener) {
 
-        LoginManager.getInstance().start(activity,activity.getFragmentManager(),onLoginListener);
+        LoginManager.getInstance().start(activity,onLoginListener);
     }
 
     /**
