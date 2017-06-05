@@ -1,20 +1,18 @@
 package com.artharyoung.sdk.Data.source.remote;
 
 
-import android.os.AsyncTask;
+import android.app.Activity;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.artharyoung.sdk.Data.bean.Iptestbhean;
 import com.artharyoung.sdk.Login.OnLoginListener;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.google.gson.Gson;
 
 /**
  * Created by arthar on 2017/5/25.
@@ -22,7 +20,29 @@ import java.net.URL;
 
 public class HttpTaskManager {
 
+    /**
+     * test
+     */
+
+    private String getTestUrl(){
+        return "http://ip.taobao.com/service/getIpInfo.php?ip=" + randomInt(1,255)+ "."+randomInt(1,255)+"."+randomInt(1,255)+"."+randomInt(1,255);
+    }
+
+    private static int randomInt(int start,int end){
+        int rtnn = Long.valueOf(start + (long) (Math.random() * (end - start))).intValue();
+        if (rtnn == start || rtnn == end) {
+            return randomInt(start, end);
+        }
+        return rtnn;
+    }
+
+    /**
+     * ===================以上均为测试===========================
+     */
     private static final String TAG = "HttpTaskManager";
+    private static RequestQueue mQueue = null;
+
+
 
     private static class SingleHttpTaskManager{
         private static final HttpTaskManager instance = new HttpTaskManager();
@@ -32,104 +52,79 @@ public class HttpTaskManager {
         return SingleHttpTaskManager.instance;
     }
 
-    public void login(final OnLoginListener onLoginListener){
-        new LoginRequest(new DataCallBack() {
+    public void init(Activity activity){
+        mQueue = Volley.newRequestQueue(activity);
+    }
+
+    private RequestQueue getQueue(){
+        if(mQueue == null){
+            throw new NullPointerException(TAG + " has not be init");
+        }
+        return mQueue;
+    }
+
+    /**
+     * 通过账号，密码登录
+     * @param account
+     * @param password
+     * @param onLoginListener
+     */
+    public void login(String account,String password,final OnLoginListener onLoginListener){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                getTestUrl(), new Response.Listener<String>() {
             @Override
-            public void onSuccess(String st) {
-                Log.d(TAG, "======onSuccess: " + st);
-                onLoginListener.onSuccess(new JSONObject());
-            }
+            public void onResponse(String response) {
 
+                Log.d(TAG, "====onResponse: " + response);
+
+                Gson gson = new Gson();
+                Iptestbhean iptestbhean = gson.fromJson(response,Iptestbhean.class);
+                if(iptestbhean.getData().getCountry_id().equals("US")){
+                    onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()),iptestbhean.getData().getCountry());
+                }else {
+                    onLoginListener.onFailure(String.valueOf(iptestbhean.getCode()),iptestbhean.getData().getCountry());
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
-            public void onError(String st) {
+            public void onErrorResponse(VolleyError error) {
 
             }
-        }).execute("http://ip.taobao.com/service/getIpInfo.php?ip=58.251.17.238");
+        });
+
+        getQueue().add(stringRequest);
     }
 
+    /**
+     * 通过token登录
+     * @param token
+     * @param onLoginListener
+     */
+    public void login(String token,final OnLoginListener onLoginListener){
 
-    public interface DataCallBack{
-        void onSuccess(String st);
-        void onError(String st);
-    }
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                getTestUrl(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-    public class LoginRequest extends AsyncTask<String,Integer,String>{
+                Log.d(TAG, "====onResponse: " + response);
 
-        private DataCallBack mDataCallBack;
-
-        public LoginRequest(DataCallBack dataCallBack){
-
-            mDataCallBack = dataCallBack;
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String result = null;
-            HttpURLConnection connection = null;
-            InputStream inStream = null;
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setDoOutput(false);//post请求需要向HttpsURLConnection输出，默认false
-                connection.setUseCaches(false);//不使用缓存
-                connection.setRequestProperty("Content-type", "application/json");//设置文本类型
-                connection.setRequestMethod("GET");//设置请求类型
-                connection.setConnectTimeout(5000);//连接超时 单位毫秒
-                connection.setReadTimeout(5000);//读取超时 单位毫秒
-                connection.setRequestProperty("User-Agent",
-                   "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)");
-                connection.setRequestProperty("Connection", "Keep-Alive"); // 设置为持久连接
-                connection.connect();
-                int resultCode = connection.getResponseCode();
-                if(resultCode == HttpURLConnection.HTTP_OK){
-
-                    inStream = connection.getInputStream();
-                    result = inputStreamToString(inStream);
-                }else{
-                    Log.d("ZZY", "doInBackground:resultCode= " + resultCode);
-                    mDataCallBack.onError("" + resultCode);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }finally {
-                if(inStream != null){
-                    try {
-                        inStream.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if(connection != null){
-                    connection.disconnect();
+                Gson gson = new Gson();
+                Iptestbhean iptestbhean = gson.fromJson(response,Iptestbhean.class);
+                if(iptestbhean.getData().getCountry_id().equals("US")){
+                    onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()),iptestbhean.getData().getCountry());
+                }else {
+                    onLoginListener.onFailure(String.valueOf(iptestbhean.getCode()),iptestbhean.getData().getCountry());
                 }
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            mDataCallBack.onSuccess(result);
-        }
-    }
-
-    public static String inputStreamToString(InputStream in) {
-
-        String str = "";
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "utf-8"));
-            StringBuffer sb = new StringBuffer();
-
-            while ((str = reader.readLine()) != null) {
-                sb.append(str);
             }
-            return sb.toString();
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
 
-        return str;
+        getQueue().add(stringRequest);
     }
 }

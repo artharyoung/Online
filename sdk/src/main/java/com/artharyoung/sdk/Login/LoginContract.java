@@ -1,5 +1,7 @@
 package com.artharyoung.sdk.Login;
 
+import android.app.Activity;
+
 import com.artharyoung.sdk.Utils.BasePresenter;
 import com.artharyoung.sdk.Utils.BaseView;
 
@@ -13,9 +15,9 @@ public class LoginContract {
 
         void signIn();
 
-        void createAnAccount();
+        void createAnAccount(Activity activity);
 
-        void forgottenYourPassword();
+        void forgottenYourPassword(Activity activity);
     }
 
     interface View extends BaseView<Presenter> {

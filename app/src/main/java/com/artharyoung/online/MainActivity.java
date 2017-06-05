@@ -1,9 +1,11 @@
 package com.artharyoung.online;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.SDKManager;
@@ -12,11 +14,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "============模拟的游戏内部接口：";
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mContext = this;
 
         SDKManager.getInstance().onActivityCreated(this);
 
@@ -57,13 +60,15 @@ public class MainActivity extends AppCompatActivity {
         SDKManager.getInstance().login(this,new OnLoginListener() {
 
             @Override
-            public void onSuccess(JSONObject json) {
-                Log.d(TAG, "onSuccess: 登录成功了！");
+            public void onSuccess(String statue,String token) {
+
+                Toast.makeText(mContext,"大概也许应该是成功了！登录地是" + token,Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onFailure(JSONObject json) {
-                Log.d(TAG, "onFailure: 登录失败了！");
+            public void onFailure(String statue,String msg) {
+
+                Toast.makeText(mContext,"跑错地儿了！登录地是" + msg,Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -74,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onHide(View view){
         Log.d(TAG, "onHide: ");
-
 
     }
 

@@ -1,6 +1,7 @@
 package com.artharyoung.sdk.Login;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.DialogFragment;
@@ -27,7 +28,15 @@ public class BaseLoginView extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Dialog dialog = getDialog();
+        final Dialog dialog = getDialog();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                //在这里适配屏幕的大小显示
+//              dialog.getWindow().setBackgroundDrawableResource(ResFinder.getId(getActivity(),"drawable","online_sdk_solid"));
+
+            }
+        });
         dialog.setCanceledOnTouchOutside(false);
 
         Window window = dialog.getWindow();

@@ -46,7 +46,7 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
         mForgottenPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.forgottenYourPassword();
+                mPresenter.forgottenYourPassword(getActivity());
                 dismiss();
             }
         });
@@ -54,7 +54,7 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
         mCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.createAnAccount();
+                mPresenter.createAnAccount(getActivity());
                 dismiss();
             }
         });

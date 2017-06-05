@@ -2,6 +2,7 @@ package com.artharyoung.sdk;
 
 import android.app.Activity;
 
+import com.artharyoung.sdk.Data.source.remote.HttpTaskManager;
 import com.artharyoung.sdk.Login.LoginManager;
 import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;
@@ -31,7 +32,8 @@ public class SDKManager implements ActivityLifecycle, GameServer {
 
     @Override
     public void onActivityCreated(Activity activity) {
-
+        //初始化网络请求服务
+        HttpTaskManager.getInstance().init(activity);
     }
 
     @Override
