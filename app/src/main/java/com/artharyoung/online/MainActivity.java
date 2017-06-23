@@ -7,12 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.artharyoung.sdk.Login.OnLoginListener;
+import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
 import com.artharyoung.sdk.SDKManager;
 
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     *
+     */
     private static final String TAG = "============模拟的游戏内部接口：";
     private Context mContext;
     @Override
@@ -97,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void onBackPressed() {
+        SDKManager.getInstance().exitApp();
+    }
 }

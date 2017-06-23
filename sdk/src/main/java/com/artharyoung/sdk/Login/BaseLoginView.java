@@ -1,10 +1,10 @@
 package com.artharyoung.sdk.Login;
 
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.DialogFragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +19,7 @@ import com.artharyoung.sdk.Utils.ResFinder;
 
 public class BaseLoginView extends DialogFragment {
 
+    private static final String TAG = "BaseLoginView";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,7 @@ public class BaseLoginView extends DialogFragment {
             window.setWindowAnimations(ResFinder.getId(getActivity(), "style", "online_sdk_login_anim"));
             window.setGravity(Gravity.CENTER);
         }
+
     }
 
     @Nullable
@@ -51,4 +53,5 @@ public class BaseLoginView extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
 }

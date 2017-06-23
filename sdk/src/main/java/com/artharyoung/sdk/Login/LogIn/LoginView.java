@@ -1,4 +1,4 @@
-package com.artharyoung.sdk.Login;
+package com.artharyoung.sdk.Login.LogIn;
 
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.artharyoung.sdk.Login.BaseLoginView;
 import com.artharyoung.sdk.Utils.ResFinder;
 
 /**
@@ -36,6 +37,7 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
         Log.d(TAG, "===onCreateView: 切换横竖屏");
 
         /**
+         *
          * 只能这么写才能使用support包的特性，即输入框变为下划线
          */
         View parentView = getActivity().getLayoutInflater().inflate(ResFinder.getId(getActivity(),"layout","online_login_main"),container);

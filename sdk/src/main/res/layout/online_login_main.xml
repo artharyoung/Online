@@ -8,6 +8,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:textAppearanceSmall"
+        android:text="@string/online_sdk_name"
+        android:textStyle="bold"/>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,7 +42,7 @@
             android:hint="@string/online_sdk_password"
             android:imeActionId="@+id/online_sdk_login"
             android:imeActionLabel="@string/online_sdk_sign_in"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"/>
 
@@ -60,10 +67,10 @@
             android:id="@+id/online_sdk_password_forgotten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
             android:layout_weight="0"
-            android:textStyle="italic"
-            android:text="@string/online_sdk_forgotten"/>
+            android:text="@string/online_sdk_forgotten"
+            android:textSize="12sp"
+            android:textStyle="italic"/>
 
         <android.support.v4.widget.Space
             android:layout_width="0dp"
@@ -74,10 +81,10 @@
             android:id="@+id/online_sdk_account_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textStyle="italic"
             android:layout_weight="0"
-            android:text="@string/online_sdk_new_account"/>
+            android:text="@string/online_sdk_new_account"
+            android:textSize="12sp"
+            android:textStyle="italic"/>
     </LinearLayout>
 
 

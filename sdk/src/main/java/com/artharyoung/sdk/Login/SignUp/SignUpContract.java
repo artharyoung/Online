@@ -1,23 +1,18 @@
-package com.artharyoung.sdk.Login;
-
-import android.app.Activity;
+package com.artharyoung.sdk.Login.SignUp;
 
 import com.artharyoung.sdk.Utils.BasePresenter;
 import com.artharyoung.sdk.Utils.BaseView;
 
 /**
- * Created by arthar on 2017/5/31.
+ * Created by arthar on 2017/6/22.
  */
 
-public class LoginContract {
-
+public class SignUpContract {
     interface Presenter extends BasePresenter {
 
-        void signIn();
+        void signUp();
 
-        void createAnAccount(Activity activity);
-
-        void forgottenYourPassword(Activity activity);
+        void back();
     }
 
     interface View extends BaseView<Presenter> {

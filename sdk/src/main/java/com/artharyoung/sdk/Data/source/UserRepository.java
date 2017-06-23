@@ -3,13 +3,14 @@ package com.artharyoung.sdk.Data.source;
 import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.remote.HttpTaskManager;
-import com.artharyoung.sdk.Login.OnLoginListener;
+import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
 
 /**
  * Created by arthar on 2017/6/2.
  * 这一层作为用户信息的总出口，所有用户相关都通过这个类交互
  * 做数据的持久化存储。
  * 数据加密也放在这一层
+ * 数据的存储，加密以及登录时的交互
  */
 
 public class UserRepository {

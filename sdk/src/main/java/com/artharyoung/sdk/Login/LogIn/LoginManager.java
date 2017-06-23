@@ -1,4 +1,4 @@
-package com.artharyoung.sdk.Login;
+package com.artharyoung.sdk.Login.LogIn;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

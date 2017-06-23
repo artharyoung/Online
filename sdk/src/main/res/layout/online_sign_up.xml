@@ -8,6 +8,28 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/online_sdk_create_new_account_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="16dp"
+            android:background="@drawable/online_sdk_back"
+            android:contentDescription="@null"/>
+
+        <TextView
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/online_sdk_account_title"
+            android:layout_centerInParent="true"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

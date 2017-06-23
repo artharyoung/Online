@@ -1,9 +1,11 @@
-package com.artharyoung.sdk.Login;
+package com.artharyoung.sdk.Login.LogIn;
 
 import android.app.Activity;
 import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.UserRepository;
+import com.artharyoung.sdk.Login.SignUp.SignUpView;
+
 
 /**
  * Created by arthar on 2017/5/31.
@@ -42,8 +44,8 @@ public class LoginPresenter implements LoginContract.Presenter{
     @Override
     public void createAnAccount(Activity activity) {
         Log.d(TAG, "createAnAccount: 跳转到注册");
-        CreateAccountView createAccountView = new CreateAccountView();
-        createAccountView.show(activity.getFragmentManager(),CreateAccountView.class.getName());
+        SignUpView createAccountView = new SignUpView();
+        createAccountView.show(activity.getFragmentManager(),SignUpView.class.getName());
     }
 
     @Override
