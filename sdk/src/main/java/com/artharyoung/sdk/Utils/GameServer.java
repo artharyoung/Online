@@ -2,7 +2,7 @@ package com.artharyoung.sdk.Utils;
 
 import android.app.Activity;
 
-import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
+import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;
 
 import org.json.JSONObject;

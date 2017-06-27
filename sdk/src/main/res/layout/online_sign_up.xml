@@ -14,9 +14,8 @@
 
         <ImageButton
             android:id="@+id/online_sdk_create_new_account_back"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:padding="16dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:background="@drawable/online_sdk_back"
             android:contentDescription="@null"/>
 

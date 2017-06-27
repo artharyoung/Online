@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.UserRepository;
-import com.artharyoung.sdk.Login.SignUp.SignUpView;
+import com.artharyoung.sdk.Login.LoginManager;
+import com.artharyoung.sdk.Login.OnLoginListener;
 
 
 /**
@@ -43,14 +44,14 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     @Override
     public void createAnAccount(Activity activity) {
-        Log.d(TAG, "createAnAccount: 跳转到注册");
-        SignUpView createAccountView = new SignUpView();
-        createAccountView.show(activity.getFragmentManager(),SignUpView.class.getName());
+
+        LoginManager.getInstance().signUp(activity,mOnLoginListener);
     }
 
     @Override
     public void forgottenYourPassword(Activity activity) {
         Log.d(TAG, "forgottenYourPassword: 找回密码");
 
+        LoginManager.getInstance().findPassword(activity,mOnLoginListener);
     }
 }

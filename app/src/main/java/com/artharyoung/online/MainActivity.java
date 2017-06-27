@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
+import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.SDKManager;
 
 import org.json.JSONObject;
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onExit(View view){
         Log.d(TAG, "onExit: ");
+        SDKManager.getInstance().exitApp();
     }
 
 

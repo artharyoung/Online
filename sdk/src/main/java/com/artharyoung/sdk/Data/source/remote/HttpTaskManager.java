@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.artharyoung.sdk.Data.bean.Iptestbhean;
-import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
+import com.artharyoung.sdk.Login.OnLoginListener;
 import com.google.gson.Gson;
 
 /**
@@ -103,6 +103,36 @@ public class HttpTaskManager {
      * @param onLoginListener
      */
     public void login(String token, final OnLoginListener onLoginListener) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                getTestUrl(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d(TAG, "====onResponse: " + response);
+
+                Gson gson = new Gson();
+                Iptestbhean iptestbhean = gson.fromJson(response, Iptestbhean.class);
+                if (iptestbhean.getData().getCountry_id().equals("US")) {
+                    onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
+                } else {
+                    onLoginListener.onFailure(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: " + error.networkResponse.statusCode);
+                Log.d(TAG, "onErrorResponse: " + error.getNetworkTimeMs());
+                Log.d(TAG, "onErrorResponse: " + error.networkResponse.data.length);
+            }
+        });
+
+        getQueue().add(stringRequest);
+    }
+
+
+    public void singUp(String account, String password, final OnLoginListener onLoginListener) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 getTestUrl(), new Response.Listener<String>() {

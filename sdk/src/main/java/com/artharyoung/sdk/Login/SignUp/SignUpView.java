@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.artharyoung.sdk.Login.BaseLoginView;
@@ -18,16 +21,32 @@ import com.artharyoung.sdk.Utils.ResFinder;
 public class SignUpView extends BaseLoginView implements SignUpContract.View{
     private static final String TAG = "CreateAccountView";
 
+    private SignUpContract.Presenter mPresenter;
+    private AutoCompleteTextView mAccountText;
+    private EditText mPasswordText;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View parentView = getActivity().getLayoutInflater().inflate(ResFinder.getId(getActivity(),"layout","online_sign_up"),container);
+
+        mAccountText = (AutoCompleteTextView)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_account"));
+        mPasswordText = (EditText)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_password"));
+
         ImageButton imageButton = (ImageButton)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_new_account_back"));
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "==========onClick:  back");
-                dismiss();
+                mPresenter.back();
+            }
+        });
+
+        Button signButton = (Button)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_new_account_button"));
+        signButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.signUp();
             }
         });
         return parentView;
@@ -35,17 +54,23 @@ public class SignUpView extends BaseLoginView implements SignUpContract.View{
 
     @Override
     public void setPresenter(SignUpContract.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 
     @Override
     public String getUserAccount() {
-        return null;
+        return mAccountText.getText().toString();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return mPasswordText.getText().toString();
     }
 
     @Override
@@ -74,11 +99,6 @@ public class SignUpView extends BaseLoginView implements SignUpContract.View{
     }
 
     @Override
-    public void resetEditView() {
-
-    }
-
-    @Override
     public void toMainAct() {
 
     }
@@ -87,4 +107,5 @@ public class SignUpView extends BaseLoginView implements SignUpContract.View{
     public void showFailedError() {
 
     }
+
 }

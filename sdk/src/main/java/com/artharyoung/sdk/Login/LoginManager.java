@@ -1,9 +1,13 @@
-package com.artharyoung.sdk.Login.LogIn;
+package com.artharyoung.sdk.Login;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import com.artharyoung.sdk.Data.source.UserRepository;
+import com.artharyoung.sdk.Login.LogIn.LoginPresenter;
+import com.artharyoung.sdk.Login.LogIn.LoginView;
+import com.artharyoung.sdk.Login.SignUp.SignUpPresenter;
+import com.artharyoung.sdk.Login.SignUp.SignUpView;
 
 /**
  * Created by arthar on 2017/5/25.
@@ -26,7 +30,18 @@ public class LoginManager {
     public void start(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
 
         LoginView loginView = new LoginView();
-        new LoginPresenter(activity,new UserRepository(),loginView,onLoginListener);
+        new LoginPresenter(activity,UserRepository.getInstance(),loginView,onLoginListener);
         loginView.show(activity.getFragmentManager(),loginView.getClass().getName());
+    }
+
+    public void signUp(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
+
+        SignUpView createAccountView = new SignUpView();
+        new SignUpPresenter(activity,UserRepository.getInstance(), createAccountView,onLoginListener);
+        createAccountView.show(activity.getFragmentManager(),SignUpView.class.getName());
+    }
+
+    public void findPassword(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
+
     }
 }

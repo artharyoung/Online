@@ -30,8 +30,6 @@ public class SignUpContract {
 
         void showLoginProgress(boolean show);
 
-        void resetEditView();
-
         void toMainAct();
 
         void showFailedError();

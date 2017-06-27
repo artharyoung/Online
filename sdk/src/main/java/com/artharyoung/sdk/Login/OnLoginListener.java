@@ -1,4 +1,4 @@
-package com.artharyoung.sdk.Login.LogIn;
+package com.artharyoung.sdk.Login;
 
 /**
  * Created by arthar on 2017/5/25.

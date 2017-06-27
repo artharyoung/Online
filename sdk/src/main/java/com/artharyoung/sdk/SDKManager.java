@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.remote.HttpTaskManager;
-import com.artharyoung.sdk.Login.LogIn.LoginManager;
-import com.artharyoung.sdk.Login.LogIn.OnLoginListener;
+import com.artharyoung.sdk.Login.LoginManager;
+import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.Pay.OnPayListener;
 import com.artharyoung.sdk.Utils.ActivityLifecycle;
 import com.artharyoung.sdk.Utils.GameServer;
