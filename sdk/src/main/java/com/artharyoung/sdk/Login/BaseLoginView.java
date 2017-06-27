@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.artharyoung.sdk.Utils.ResFinder;
+import com.artharyoung.sdk.Utils.Util;
 
 /**
  * Created by arthar on 2017/5/31.
@@ -23,7 +23,7 @@ public class BaseLoginView extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE,ResFinder.getId(getActivity(),"style","online_sdk_login_dialog"));
+        setStyle(DialogFragment.STYLE_NO_TITLE, Util.getId(getActivity(),"style","online_sdk_login_dialog"));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BaseLoginView extends DialogFragment {
 
         Window window = dialog.getWindow();
         if(window != null) {
-            window.setWindowAnimations(ResFinder.getId(getActivity(), "style", "online_sdk_login_anim"));
+            window.setWindowAnimations(Util.getId(getActivity(), "style", "online_sdk_login_anim"));
             window.setGravity(Gravity.CENTER);
         }
 

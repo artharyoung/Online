@@ -3,6 +3,7 @@ package com.artharyoung.sdk.Login.SignUp;
 import android.app.Activity;
 
 import com.artharyoung.sdk.Data.source.UserRepository;
+import com.artharyoung.sdk.Login.LoginManager;
 import com.artharyoung.sdk.Login.OnLoginListener;
 
 /**
@@ -17,7 +18,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
     private OnLoginListener mOnLoginListener;
 
 
-    public SignUpPresenter(Activity activity, UserRepository userRepository,SignUpContract.View singUpView, OnLoginListener onLoginListener) {
+    public SignUpPresenter(UserRepository userRepository, SignUpContract.View singUpView, OnLoginListener onLoginListener) {
 
         singUpView.setPresenter(this);
         this.mSignUpView = singUpView;
@@ -33,11 +34,11 @@ public class SignUpPresenter implements SignUpContract.Presenter {
 
     @Override
     public void signUp() {
-        mUserRepository.signUp(mSignUpView.getUserAccount(),mSignUpView.getPassword(),mOnLoginListener);
+        mUserRepository.signUp(mSignUpView.getUserAccount(), mSignUpView.getPassword(), mOnLoginListener);
     }
 
     @Override
-    public void back() {
-
+    public void back(Activity activity) {
+        LoginManager.getInstance().start(activity, mOnLoginListener);
     }
 }

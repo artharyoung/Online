@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SDK</string>
-    <!--login view-->
 
+    <!--login view-->
     <string name="online_sdk_name">Online SDK</string>
     <string name="online_sdk_account">Account</string>
     <string name="online_sdk_password">Password</string>
@@ -10,4 +10,7 @@
     <string name="online_sdk_next">Next</string>
     <string name="online_sdk_forgotten">Forgotten your password?</string>
     <string name="online_sdk_account_title">Create your Online account.</string>
+
+    <!--tips-->
+    <string name="online_sdk_config_file">configuration file not found</string>
 </resources>

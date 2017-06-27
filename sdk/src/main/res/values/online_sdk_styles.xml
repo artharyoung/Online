@@ -7,6 +7,12 @@
         <item name="@android:windowExitAnimation">@anim/online_sdk_login_exit</item>
     </style>
 
+    <!--登录和注册界面进出的反向动画-->
+    <style name="online_sdk_login_anim_back" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/online_sdk_login_exit</item>
+        <item name="@android:windowExitAnimation">@anim/online_sdk_login_enter</item>
+    </style>
+
     <style name="online_sdk_login_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowIsFloating">true</item>  <!--是否浮现在activity之上-->

@@ -1,5 +1,7 @@
 package com.artharyoung.sdk.Login.SignUp;
 
+import android.app.Activity;
+
 import com.artharyoung.sdk.Utils.BasePresenter;
 import com.artharyoung.sdk.Utils.BaseView;
 
@@ -12,7 +14,7 @@ public class SignUpContract {
 
         void signUp();
 
-        void back();
+        void back(Activity activity);
     }
 
     interface View extends BaseView<Presenter> {

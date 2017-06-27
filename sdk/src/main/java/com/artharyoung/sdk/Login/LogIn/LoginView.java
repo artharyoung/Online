@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.artharyoung.sdk.Login.BaseLoginView;
-import com.artharyoung.sdk.Utils.ResFinder;
+import com.artharyoung.sdk.Utils.Util;
 
 /**
  * Created by arthar on 2017/5/25.
@@ -40,9 +40,9 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
          *
          * 只能这么写才能使用support包的特性，即输入框变为下划线
          */
-        View parentView = getActivity().getLayoutInflater().inflate(ResFinder.getId(getActivity(),"layout","online_login_main"),container);
-        mForgottenPassword = (TextView) parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_password_forgotten"));
-        mCreateAccount = (TextView) parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_account_create"));
+        View parentView = getActivity().getLayoutInflater().inflate(Util.getId(getActivity(),"layout","online_login_main"),container);
+        mForgottenPassword = (TextView) parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_password_forgotten"));
+        mCreateAccount = (TextView) parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_account_create"));
         mForgottenPassword.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG|Paint.UNDERLINE_TEXT_FLAG);//设置下划线并抗锯齿（防止锯齿）
         mCreateAccount.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG|Paint.UNDERLINE_TEXT_FLAG);
         mForgottenPassword.setOnClickListener(new View.OnClickListener() {
@@ -61,9 +61,9 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
             }
         });
 
-        mAccount = (EditText)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_account"));
-        mPassword = (EditText)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_password"));
-        mSignInButton = (Button)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_sign_in_button"));
+        mAccount = (EditText)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_account"));
+        mPassword = (EditText)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_password"));
+        mSignInButton = (Button)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_sign_in_button"));
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

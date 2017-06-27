@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "online_appId": "this is a app id",
+    "online_appKey": "this is a app key",
+    "online_appKeyStore": "",
+    "online_other_key": ""
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066815599117:android:82104c45bb975642",
+        "android_client_info": {
+          "package_name": "com.studyjams.mdvideo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066815599117-332c5d4e4331k2o58s9a234p0ln68a3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-TJWZdHp_K2P1_08ImowTNpvHAeSDARM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

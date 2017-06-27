@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.artharyoung.sdk.Login.BaseLoginView;
-import com.artharyoung.sdk.Utils.ResFinder;
+import com.artharyoung.sdk.Utils.Util;
 
 /**
  * Created by arthar on 2017/5/25.
@@ -28,21 +28,22 @@ public class SignUpView extends BaseLoginView implements SignUpContract.View{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parentView = getActivity().getLayoutInflater().inflate(ResFinder.getId(getActivity(),"layout","online_sign_up"),container);
+        View parentView = getActivity().getLayoutInflater().inflate(Util.getId(getActivity(),"layout","online_sign_up"),container);
 
-        mAccountText = (AutoCompleteTextView)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_account"));
-        mPasswordText = (EditText)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_password"));
+        mAccountText = (AutoCompleteTextView)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_create_account"));
+        mPasswordText = (EditText)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_create_password"));
 
-        ImageButton imageButton = (ImageButton)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_new_account_back"));
+        ImageButton imageButton = (ImageButton)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_create_new_account_back"));
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "==========onClick:  back");
-                mPresenter.back();
+                dismiss();
+                mPresenter.back(getActivity());
             }
         });
 
-        Button signButton = (Button)parentView.findViewById(ResFinder.getId(getActivity(),"id","online_sdk_create_new_account_button"));
+        Button signButton = (Button)parentView.findViewById(Util.getId(getActivity(),"id","online_sdk_create_new_account_button"));
         signButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

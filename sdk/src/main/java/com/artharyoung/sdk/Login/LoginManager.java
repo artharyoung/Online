@@ -2,6 +2,7 @@ package com.artharyoung.sdk.Login;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.UserRepository;
 import com.artharyoung.sdk.Login.LogIn.LoginPresenter;
@@ -30,18 +31,22 @@ public class LoginManager {
     public void start(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
 
         LoginView loginView = new LoginView();
-        new LoginPresenter(activity,UserRepository.getInstance(),loginView,onLoginListener);
+        new LoginPresenter(UserRepository.getInstance(),loginView,onLoginListener);
         loginView.show(activity.getFragmentManager(),loginView.getClass().getName());
     }
 
     public void signUp(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
 
         SignUpView createAccountView = new SignUpView();
-        new SignUpPresenter(activity,UserRepository.getInstance(), createAccountView,onLoginListener);
+        new SignUpPresenter(UserRepository.getInstance(), createAccountView,onLoginListener);
         createAccountView.show(activity.getFragmentManager(),SignUpView.class.getName());
     }
 
     public void findPassword(@NonNull Activity activity, @NonNull OnLoginListener onLoginListener){
 
+    }
+
+    public void showLoginProgress(){
+        Log.d(TAG, "showLoginProgress: 注册成功，正在登录");
     }
 }

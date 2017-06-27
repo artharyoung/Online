@@ -2,7 +2,6 @@ package com.artharyoung.sdk.Login.LogIn;
 
 import android.app.Activity;
 import android.util.Log;
-
 import com.artharyoung.sdk.Data.source.UserRepository;
 import com.artharyoung.sdk.Login.LoginManager;
 import com.artharyoung.sdk.Login.OnLoginListener;
@@ -20,7 +19,7 @@ public class LoginPresenter implements LoginContract.Presenter{
     private OnLoginListener mOnLoginListener = null;
     private UserRepository mRepository = null;
 
-    public LoginPresenter(Activity activity, UserRepository userRepository, LoginContract.View loginView, OnLoginListener onLoginListener){
+    public LoginPresenter(UserRepository userRepository, LoginContract.View loginView, OnLoginListener onLoginListener){
 
         loginView.setPresenter(this);
 

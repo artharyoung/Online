@@ -12,7 +12,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.artharyoung.sdk.Data.bean.Iptestbhean;
 import com.artharyoung.sdk.Login.OnLoginListener;
-import com.google.gson.Gson;
+import com.artharyoung.sdk.Utils.Util;
 
 /**
  * Created by arthar on 2017/5/25.
@@ -78,8 +78,7 @@ public class HttpTaskManager {
 
                 Log.d(TAG, "====onResponse: " + response);
 
-                Gson gson = new Gson();
-                Iptestbhean iptestbhean = gson.fromJson(response, Iptestbhean.class);
+                Iptestbhean iptestbhean = Util.getBeanFromJson(response, Iptestbhean.class);
                 if (iptestbhean.getData().getCountry_id().equals("US")) {
                     onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
                 } else {
@@ -111,8 +110,7 @@ public class HttpTaskManager {
 
                 Log.d(TAG, "====onResponse: " + response);
 
-                Gson gson = new Gson();
-                Iptestbhean iptestbhean = gson.fromJson(response, Iptestbhean.class);
+                Iptestbhean iptestbhean = Util.getBeanFromJson(response, Iptestbhean.class);
                 if (iptestbhean.getData().getCountry_id().equals("US")) {
                     onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
                 } else {
@@ -131,7 +129,12 @@ public class HttpTaskManager {
         getQueue().add(stringRequest);
     }
 
-
+    /**
+     * 注册成功后出发登录，切换登录状态。
+     * @param account
+     * @param password
+     * @param onLoginListener
+     */
     public void singUp(String account, String password, final OnLoginListener onLoginListener) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
@@ -141,9 +144,9 @@ public class HttpTaskManager {
 
                 Log.d(TAG, "====onResponse: " + response);
 
-                Gson gson = new Gson();
-                Iptestbhean iptestbhean = gson.fromJson(response, Iptestbhean.class);
+                Iptestbhean iptestbhean = Util.getBeanFromJson(response, Iptestbhean.class);
                 if (iptestbhean.getData().getCountry_id().equals("US")) {
+                    //直接回调
                     onLoginListener.onSuccess(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
                 } else {
                     onLoginListener.onFailure(String.valueOf(iptestbhean.getCode()), iptestbhean.getData().getCountry());
