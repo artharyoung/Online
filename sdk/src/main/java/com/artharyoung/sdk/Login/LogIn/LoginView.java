@@ -75,7 +75,6 @@ public class LoginView extends BaseLoginView implements LoginContract.View {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.artharyoung.sdk.Data.source.remote.HttpTaskManager;
 import com.artharyoung.sdk.Login.OnLoginListener;
+import com.artharyoung.sdk.Utils.Util;
 
 /**
  * Created by arthar on 2017/6/2.
@@ -33,7 +34,7 @@ public class UserRepository {
      */
     public void login(String account, String password, OnLoginListener onLoginListener) {
         Log.d(TAG, "login: " + account + "|" + password);
-        HttpTaskManager.getInstance().login(account, password, onLoginListener);
+        HttpTaskManager.getInstance().login(account, Util.md5(password), onLoginListener);
     }
 
     /**
@@ -57,6 +58,6 @@ public class UserRepository {
      * @param onLoginListener
      */
     public void signUp(String account, String password, OnLoginListener onLoginListener) {
-        HttpTaskManager.getInstance().singUp(account, password, onLoginListener);
+        HttpTaskManager.getInstance().singUp(account, Util.md5(password), onLoginListener);
     }
 }

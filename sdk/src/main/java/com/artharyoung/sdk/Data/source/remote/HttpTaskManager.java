@@ -71,12 +71,14 @@ public class HttpTaskManager {
      */
     public void login(String account, String password, final OnLoginListener onLoginListener) {
 
+        Log.d(TAG, "login: account: " + account + "|" + "password:" + password);
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 getTestUrl(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Log.d(TAG, "====onResponse: " + response);
+                Log.d(TAG, "====onResponse: " + response );
 
                 Iptestbhean iptestbhean = Util.getBeanFromJson(response, Iptestbhean.class);
                 if (iptestbhean.getData().getCountry_id().equals("US")) {
@@ -136,6 +138,8 @@ public class HttpTaskManager {
      * @param onLoginListener
      */
     public void singUp(String account, String password, final OnLoginListener onLoginListener) {
+        Log.d(TAG, "login: account: " + account + "|" + "password:" + password);
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 getTestUrl(), new Response.Listener<String>() {

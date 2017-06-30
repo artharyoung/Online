@@ -44,14 +44,17 @@ public class SDKManager implements ActivityLifecycle, GameServer {
         /**
          * 游戏参数以配置文件的形式放在assets目录下。在实际的对接过程中，有遇到过因为复制粘贴在manifest里面或者其他地方
          * 读取时产生转移字符的问题导致不能使用到正确的参数。放在一个文件里主要是便于保证参数的完整性。同时，这个配置文件也可以用来
-         * 配置渠道区分的参数。由于assets文件在打包的时候是不会计算hash值的，所以用压缩软件解包更改这个文件再压缩对APK也不会有影响。
+         * 配置渠道区分的参数。
          */
         try {
             InputStream inputStream = activity.getResources().getAssets().open("online_configuration.json");
             String config = Util.inputStreamToString(inputStream);
-            Log.d(TAG, "====onActivityCreated: " + config);
+            Log.d(TAG, "====onActivityCreated: " + Util.md5(config) +"|" + Util.getUniquePsuedoID());
+            Log.d(TAG, "====onActivityCreated: ");
+            //31f50f803cce1d200574a055adafb3d8
         } catch (IOException e) {
-            Toast.makeText(activity,activity.getString(Util.getId(activity,"string","online_sdk_config_file")),Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,activity.getString(Util.getId(activity,"string","online_sdk_config_file")),Toast.LENGTH_LONG).show();
+            activity.finish();//无配置文件无法调试
         }
     }
 
