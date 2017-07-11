@@ -116,7 +116,9 @@ public class SDKManager implements ActivityLifecycle, GameServer {
      * 返回键调用
      */
     @Override
-    public void exitApp() {
+    public void exitApp(Activity activity) {
         Log.d(TAG, "========exitApp: 返回键");
+        activity.finish();
+
     }
 }

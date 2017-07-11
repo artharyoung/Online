@@ -15,5 +15,5 @@ public interface GameServer {
     void login(Activity activity, OnLoginListener onLoginListener);
     void pay(String payInfo,OnPayListener onPayListener);
     void upLoadInfo(JSONObject json);
-    void exitApp();
+    void exitApp(Activity activity);
 }

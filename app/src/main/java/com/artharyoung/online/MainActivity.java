@@ -1,7 +1,10 @@
 package com.artharyoung.online;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,8 @@ import com.artharyoung.sdk.Login.OnLoginListener;
 import com.artharyoung.sdk.SDKManager;
 
 import org.json.JSONObject;
+
+import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -97,12 +102,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void onExit(View view){
         Log.d(TAG, "onExit: ");
-        SDKManager.getInstance().exitApp();
+        SDKManager.getInstance().exitApp(this);
     }
 
 
     @Override
     public void onBackPressed() {
-        SDKManager.getInstance().exitApp();
+        SDKManager.getInstance().exitApp(this);
+        Handler handler = new MyHandler(this);
+
     }
+
+    private static class MyHandler extends Handler {
+            private WeakReference<Activity> activityWeakReference;
+
+            public MyHandler(Activity activity) {
+                activityWeakReference = new WeakReference<Activity>(activity);
+            }
+
+            @Override
+            public void handleMessage(Message msg) {
+                Activity activity = activityWeakReference.get();
+                if (activity != null) {
+
+                }
+            }
+        }
 }

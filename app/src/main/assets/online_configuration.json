@@ -3,12 +3,12 @@
     "online_appId": "this is a app id",
     "online_appKey": "this is a app key",
     "online_appKeyStore": "",
-    "online_other_key": ""
+    "online_other_key": "生成json文件"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1066815599117:android:82104c45bb975642",
+        "mobilesdk_app_id": "",
         "android_client_info": {
           "package_name": "com.studyjams.mdvideo"
         }
